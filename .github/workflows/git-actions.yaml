@@ -1,0 +1,35 @@
+name: my-pipeline
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE
+      - uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+           aws-region: us-west-2
+
+      - name: terraform installation
+        run: bash Terraform-installation.sh
+        shell: bash
+
+      - name: terraform init
+        run: terraform init
+        shell: bash
+
+      - name: terraform plan
+        run: terraform plan
+        shell: bash
+
+      - name: Terraform apply
+        run: terraform apply
+        shell: bash
