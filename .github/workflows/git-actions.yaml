@@ -34,4 +34,8 @@ jobs:
         run: terraform apply -auto-approve
         shell: bash
 
+      - name: Terraform destroy
+        run: terraform destroy
+        shell: bash
+
       
