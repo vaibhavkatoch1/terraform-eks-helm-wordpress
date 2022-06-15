@@ -13,3 +13,16 @@ data "aws_availability_zones" "available" {}
 # to open EC2 Security Group access to the Kubernetes cluster.
 # See workstation-external-ip.tf for additional information.
 provider "http" {}
+
+terraform {
+  required_providers {
+    helm = {
+      source = "hashicorp/helm"
+      version = "2.5.1"
+    }
+  }
+}
+
+provider "helm" {
+  # Configuration options
+}
