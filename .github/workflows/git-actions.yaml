@@ -30,12 +30,8 @@ jobs:
         run: terraform plan
         shell: bash
 
-      - name: terraform plan
-        run: aws eks update-kubeconfig --region us-west-2 --name terraform-eks-demo
-        shell: bash  
-
       - name: Terraform apply
         run: terraform apply -auto-approve
         shell: bash
 
-      #
+      
