@@ -3,6 +3,10 @@ name: my-pipeline
 on:
   push:
 
+env:
+ region = var.aws_region
+ cluster-name = var.cluster-name
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,6 +33,10 @@ jobs:
       - name: terraform plan
         run: terraform plan
         shell: bash
+
+      - name: terraform plan
+        run: aws eks update-kubeconfig --region $region --name $cluster-name
+        shell: bash  
 
       - name: Terraform apply
         run: terraform apply -auto-approve
